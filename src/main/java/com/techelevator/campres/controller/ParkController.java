@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.techelevator.campres.Campsite;
 import com.techelevator.campres.Park;
+import com.techelevator.campres.ParkCampsiteDAO;
 import com.techelevator.campres.ParkListDAO;
 
 
@@ -17,6 +19,7 @@ import com.techelevator.campres.ParkListDAO;
 public class ParkController {
 	
 	private ParkListDAO parkListDAO;
+	private ParkCampsiteDAO parkCampSiteDAO;
 	
 	@Autowired
 	public ParkController(ParkListDAO parkListDAO) {
@@ -29,13 +32,25 @@ public class ParkController {
 		List<Park> parkList = parkListDAO.readAllParks();
 		modelParkList.put("parkList", parkList);
 		
-		
-		
-		
-		
-	return "parkList";
-	
-
+		return "parkList";
 	}
+		
+	@RequestMapping(path ="/parkCampsites", method=RequestMethod.GET)
+	public String displayCampsites(Map<String, Object> modelCampsiteList) {
+		
+		
+		
+		List<Campsite> parkCampSiteList = parkCampSiteDAO.readAllCampsites();
+		modelCampsiteList.put("parkCampSiteList", parkCampSiteList);
+		
+		return "parkCampsites"; 
+		
+	}
+		
+		
+		
+		
+		
+
 	
 }
