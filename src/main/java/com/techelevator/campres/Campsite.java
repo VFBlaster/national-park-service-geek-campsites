@@ -1,25 +1,27 @@
 package com.techelevator.campres;
 
+import java.math.BigDecimal;
+
 public class Campsite {
 
-	private Long campgroundId;
-	private Long parkId;
+	private long campgroundId;
+	private long parkId;
 	private String name;
-	private Long openFrom;
-	private Long openTo;
-	private Long dailyFee;
+	private long openFrom;
+	private long openTo;
+	private BigDecimal dailyFee;
 	
 	
 	public Long getCampgroundId() {
 		return campgroundId;
 	}
-	public void setCampgroundId(Long campgroundId) {
+	public void setCampgroundId(long campgroundId) {
 		this.campgroundId = campgroundId;
 	}
-	public Long getParkId() {
+	public long getParkId() {
 		return parkId;
 	}
-	public void setParkId(Long parkId) {
+	public void setParkId(long parkId) {
 		this.parkId = parkId;
 	}
 	public String getName() {
@@ -28,22 +30,22 @@ public class Campsite {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getOpenFrom() {
+	public long getOpenFrom() {
 		return openFrom;
 	}
-	public void setOpenFrom(Long openFrom) {
+	public void setOpenFrom(long openFrom) {
 		this.openFrom = openFrom;
 	}
-	public Long getOpenTo() {
+	public long getOpenTo() {
 		return openTo;
 	}
-	public void setOpenTo(Long openTo) {
+	public void setOpenTo(long openTo) {
 		this.openTo = openTo;
 	}
-	public Long getDailyFee() {
+	public BigDecimal getDailyFee() {
 		return dailyFee;
 	}
-	public void setDailyFee(Long dailyFee) {
+	public void setDailyFee(BigDecimal dailyFee) {
 		this.dailyFee = dailyFee;
 	}
 	

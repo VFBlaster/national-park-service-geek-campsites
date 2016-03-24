@@ -12,6 +12,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 
+
+
 @Component
 public class JDBCParkListDAO implements ParkListDAO {
 
@@ -36,7 +38,7 @@ public class JDBCParkListDAO implements ParkListDAO {
 		
 		while(results.next()) {
 			Park aPark = new Park();
-			int park_id = results.getInt("park_id");
+			Long park_id = results.getLong("park_id");
 			String name = results.getString("name");
 			String location = results.getString("location");
 			String establish_date = (results.getString("establish_date"));
@@ -58,6 +60,20 @@ public class JDBCParkListDAO implements ParkListDAO {
 		}
 		
 		return parkList;
+	}
+
+
+
+	@Override
+	public Park findParkByCode(Long parkId) {
+		Park desired = null;
+		for (Park p : parkList){
+			if(p.getPark_id() == parkId){
+				desired = p;
+			}
+		}
+		return desired;
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.techelevator.campres;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,27 +23,24 @@ public class JDBCParkCampsiteDAO implements ParkCampsiteDAO {
 	}
 	
 	@Override
-	public List<Campsite> showCampsites(Long parkId) {
+	public List<Campsite> showCampsites(long parkId) {
 		campsiteList = new ArrayList<>();
 		
 		String sqlAllCampsites = "SELECT * " +
 								 "FROM campground " +
 								 "WHERE park_id = ?";
-		
-		//String currentParkId = Long.toString(parkId);
-		
+				
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllCampsites, parkId);
-								 
+		
 		while(results.next()) {
-			
 			Campsite campsite = new Campsite();
 			
-			Long campId = results.getLong("campground_id");
-			Long park_Id = results.getLong("park_id");
+			long campId = results.getLong("campground_id");
+			long park_Id = results.getLong("park_id");
 			String name = results.getString("name");
-			Long openFrom = results.getLong("open_from_mm");
-			Long openTo = results.getLong("open_to_mm");
-			Long dailyFee = results.getLong("daily_fee");
+			long openFrom = results.getLong("open_from_mm");
+			long openTo = results.getLong("open_to_mm");
+			BigDecimal dailyFee = results.getBigDecimal("daily_fee");
 			
 			campsite.setCampgroundId(campId);
 			campsite.setParkId(park_Id);
@@ -54,6 +52,5 @@ public class JDBCParkCampsiteDAO implements ParkCampsiteDAO {
 			campsiteList.add(campsite);
 		}
 		return campsiteList;
-			
 	}	
 }

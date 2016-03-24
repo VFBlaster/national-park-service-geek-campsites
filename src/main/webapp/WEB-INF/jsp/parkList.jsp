@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CRVM</title>
+<title>National Parks</title>
 <c:url var="cssHref" value="/css/site.css" />
 <link type="text/css" rel="stylesheet" href="${cssHref}" />
 </head>
@@ -17,6 +17,7 @@
 
 		<c:forEach var="park" items="${parkList}">
 			<li class="park">
+			
 			
 			<c:url var="parkCampsitesHref" value="/parkCampsites">
 				<c:param name="parkId" value="${park.park_id}" />
