@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Park {
 	
-	private Long park_id;
+	private int park_id;
 	private String name;
 	private String location;
 	private LocalDate establish_date;
@@ -14,10 +14,10 @@ public class Park {
 	
 	
 	
-	public Long getPark_id() {
+	public int getPark_id() {
 		return park_id;
 	}
-	public void setPark_id(Long park_id) {
+	public void setPark_id(int park_id) {
 		this.park_id = park_id;
 	}
 	public String getName() {

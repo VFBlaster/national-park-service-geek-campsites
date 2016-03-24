@@ -6,11 +6,11 @@
 		<title></title>
 	</head>
 	<body>
-		<h1 id="welcome">Hello World!</h1>
+		<h1 id="welcome">Please select Park to see campsites</h1>
 			<ul>
 				<c:forEach var="park" items="${parkList}">
 					<li class="park">
-                    <h3>What the hell!?!
+                    <h3>
                         <c:url var="parkCampsitesHref" value="/parkCampsites">
                             <c:param name="parkId" value="${park.park_id}" />
                         </c:url>

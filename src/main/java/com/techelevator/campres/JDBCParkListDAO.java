@@ -36,13 +36,13 @@ public class JDBCParkListDAO implements ParkListDAO {
 		
 		while(results.next()) {
 			Park aPark = new Park();
-			Long park_id = results.getLong("park_id");
+			int park_id = results.getInt("park_id");
 			String name = results.getString("name");
 			String location = results.getString("location");
 			String establish_date = (results.getString("establish_date"));
 				LocalDate ld = LocalDate.parse(establish_date);
 			Long area = results.getLong("area");
-			Long visitors = results.getLong("name");
+			Long visitors = results.getLong("visitors");
 			String description = results.getString("description");
 			
 			aPark.setPark_id(park_id);
