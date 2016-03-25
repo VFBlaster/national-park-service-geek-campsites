@@ -14,26 +14,19 @@
 			<img id="logo" src="${logoSrc}" alt="Campsite Logo" />
 		</header>
 	
-		<h1 id="welcome">Campsite Availability Search</h1>
+		<h1 id="welcome">Campsite Availability Search for ${parkCampGround.name}</h1>
 		
 				<p>Please Select a Start Date</p>
-				<form method="GET" action="campsite_search">
-					<input type="hidden" name="campgroundId" value="${campsite.campgroundId}" />
-					<input type="date" value="Select Beginning Date"/>
+				<form method="GET" action="select_date_search">
+					<input type="date" min="2016-03-01" name="BeginningDate"/>
 					
-				</form>
-				<p>Please Select a End Date</p>
-				<form method="GET" action="campsite_search">
-					<input type="hidden" name="campgroundId" value="${campsite.campgroundId}" />
-					<input type="date" value="Select Beginning Date"/>
+ 				<p>Please Select an End Date</p>
+					<input type="hidden" name="campgroundId" value="${parkCampGround.campgroundId}" />
+					<input type="date" min="2016-03-02" name="EndDate"/>
 					
+					<input type="submit" value="Search for availability" />
 				</form>
 				
 			
-			
-			
-		
-
-
 	</body>
 </html>

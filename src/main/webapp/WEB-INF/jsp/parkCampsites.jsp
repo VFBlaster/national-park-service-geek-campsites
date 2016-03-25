@@ -14,17 +14,17 @@
 			<img id="logo" src="${logoSrc}" alt="Campsite Logo" />
 		</header>
 	
-		<h1 id="welcome">Please select a Campground in ${selectedPark.name}</h1>
+		<h1 id="welcome">Please select a Campground in ${selectedPark.name} National Park</h1>
 		<ul>
 
 		<c:forEach var="campsite" items="${parkCampSiteList}">
 			<li class="park">
-				<c:out value="${campsite.name}"/>
-				Open from <c:out value="${campsite.openFrom}"/> to <c:out value="${campsite.openTo}"/>
-				Daily fee $ <c:out value="${campsite.dailyFee}"/>
-				Number of Sites on Campground (table sites)
+				<b><c:out value="${campsite.name}"/></b><br><br>
+				Open from <c:out value="${campsite.openFrom}"/> through <c:out value="${campsite.openTo}"/><br>
+				Daily fee $ <c:out value="${campsite.dailyFee}"/><br>
+				Number of Sites on Campground: <c:out value="${campsite.site_number}"/>
 				<form method="GET" action="campsite_search">
-					<input type="hidden" name="campgroundId" value="${campsite.campgroundId}" />
+					<input type="hidden" name="campgroundId" value="${campsite.campgroundId}" /><br>
 					<input type="submit" value="FIND AVAILABILITY"/>
 				</form>
 				

@@ -43,23 +43,21 @@ public class ParkController {
 		
 		Park selectedPark = parkListDAO.findParkByCode(parkId);
 		List<Campsite> parkCampSiteList = parkCampSiteDAO.showCampsites(parkId);
-		
-		System.out.println(parkId);
-		
+				
 		modelCampsiteList.put("parkCampSiteList", parkCampSiteList);
 		modelCampsiteList.put("selectedPark", selectedPark);
-		
-		System.out.println(parkId);
-		
+				
 		return "parkCampsites"; 
 		
 	}
 		
 	@RequestMapping(path ="/campsite_search", method=RequestMethod.GET)
-	public String searchFormCampground(@RequestParam(name="campgroundId") long campgroundId) {
+	public String searchFormCampground(Map<String, Object> modelCampground,
+										@RequestParam(name="campgroundId") long campgroundId) {
 		
-		
-		
+		Campsite parkCampGround = parkCampSiteDAO.showCampsgroundName(campgroundId);
+		modelCampground.put("parkCampGround", parkCampGround);
+
 		return "campsite_search";
 	}
 }
