@@ -6,15 +6,13 @@ public class Site {
 	
 	private long site_id;
 	private long campground_id;
-	private int site_number;
-	private int max_occupancy;
+	private long site_number;
+	private long max_occupancy;
 	private boolean accessible;
-	private int max_rv_length;
+	private long max_rv_length;
 	private boolean utilities;
 	
-	
-	
-	
+
 	public long getSite_id() {
 		return site_id;
 	}
@@ -27,17 +25,17 @@ public class Site {
 	public void setCampground_id(long campground_id) {
 		this.campground_id = campground_id;
 	}
-	public int getSite_number() {
+	public long getSite_number() {
 		return site_number;
 	}
-	public void setSite_number(int site_number) {
-		this.site_number = site_number;
+	public void setSite_number(long siteNumber) {
+		this.site_number = siteNumber;
 	}
-	public int getMax_occupancy() {
+	public long getMax_occupancy() {
 		return max_occupancy;
 	}
-	public void setMax_occupancy(int max_occupancy) {
-		this.max_occupancy = max_occupancy;
+	public void setMax_occupancy(long maxOccupancy) {
+		this.max_occupancy = maxOccupancy;
 	}
 	public boolean isAccessible() {
 		return accessible;
@@ -45,10 +43,10 @@ public class Site {
 	public void setAccessible(boolean accessible) {
 		this.accessible = accessible;
 	}
-	public int getMax_rv_length() {
+	public long getMax_rv_length() {
 		return max_rv_length;
 	}
-	public void setMax_rv_length(int max_rv_length) {
+	public void setMax_rv_length(long max_rv_length) {
 		this.max_rv_length = max_rv_length;
 	}
 	public boolean isUtilities() {
