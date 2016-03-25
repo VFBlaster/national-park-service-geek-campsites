@@ -1,6 +1,7 @@
 package com.techelevator.campres.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,14 +68,26 @@ public class ParkController {
 		return "campsite_search";
 	}
 	
+	
+	
+	
+	
+	
 	@RequestMapping(path = "/siteSearchResults", method=RequestMethod.GET)
 	public String getSearchResults(Map<String, Object> modelSiteSearchResults,
-													   @RequestParam(name="siteId") long siteId) {
-	
-		List<Site> sites = siteSearchDAO.showSites(siteId);
+													   	@RequestParam(name="campgroundId") long campgroundId, 
+														@RequestParam(name="begindate") String beginDate,
+														@RequestParam(name="enddate") String endDate){
+		
+
+		List<Site> sites = siteSearchDAO.showAvailableSites(campgroundId, beginDate, endDate);
+		
+		System.out.println("ParkController says: "+beginDate);
+		System.out.println("ParkController says: "+endDate);
+
 		modelSiteSearchResults.put("sites", sites);
 
-		return "campsiteSearchResults";												
+		return "siteSearchResults";												
 		
 	}
 }

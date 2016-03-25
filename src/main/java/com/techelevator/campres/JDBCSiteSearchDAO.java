@@ -1,5 +1,6 @@
 package com.techelevator.campres;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class JDBCSiteSearchDAO implements SiteSearchDAO {
 
 	private JdbcTemplate jdbcTemplate;
-	private List<Site> siteList;
+	private List<Reservation> resList;
+	private List<Site> availableSiteList;
 
 	@Autowired
 	public JDBCSiteSearchDAO(DataSource dataSource) {
@@ -24,45 +26,129 @@ public class JDBCSiteSearchDAO implements SiteSearchDAO {
 		}
 	
 	@Override
-	public List<Site> showSites(long siteId) {
+	public List<Site> showAvailableSites(long campgroundId, String beginDate, String endDate) {
 		
-		siteList  = new ArrayList<>();
+		resList  = new ArrayList<>();
+		availableSiteList = new ArrayList<>();
 	
-		String sqlAllSites = "SELECT * " +
-							 "FROM site " +
-							 "LIMIT 10";
+		String sqlAllReservations = "SELECT * " +
+									"FROM reservation " +
+									"JOIN site ON site.site_id = reservation.site_id " +
+									"WHERE site.campground_id = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllSites);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllReservations, campgroundId);
+		
+		
 		
 		while(results.next()) {
-			Site site = new Site();
+			Reservation res = new Reservation();
 			
-		long site_id = results.getLong("site_id");
-		long campgroundId = results.getLong("campground_id");
-		long siteNumber = results.getLong("site_number");
-		long maxOccupancy = results.getLong("max_occupancy");
-		boolean accessible = results.getBoolean("accessible");
-		long maxRvLength = results.getLong("max_rv_length");
-		boolean utilities = results.getBoolean("utilities");
+			long reservation_id = results.getLong("reservation_id");
+			long site_id = results.getLong("site_id");
+			String name = results.getString("name");
+			String from_date = results.getString("from_date");
+				LocalDate fromLD = LocalDate.parse(from_date);
+			String to_date = results.getString("to_date");
+				LocalDate toLD = LocalDate.parse(to_date);
+			String create_date = results.getString("create_date");
+			LocalDate create_dateLD = LocalDate.parse(create_date);
+			
+			res.setReservation_id(reservation_id);
+			res.setSite_id(site_id);
+			res.setName(name);
+			res.setFrom_date(fromLD);
+			res.setTo_date(toLD);
+			res.setTo_date(create_dateLD);
 		
-		site.setSite_id(site_id);
-		site.setCampground_id(campgroundId);
-		site.setSite_number(siteNumber);
-		site.setMax_occupancy(maxOccupancy);
-		site.setAccessible(accessible);
-		site.setMax_rv_length(maxRvLength);
-		site.setUtilities(utilities);
+			resList.add(res);
+			}
 		
-		siteList.add(site);
-		}
-		return siteList;
+		boolean isSiteAvailable;
+		
+		if (resList.isEmpty()) {
+			isSiteAvailable = true;
+			
+			// if resList is empty, need a way to pick all the sites
+/*			
+			Site availableSite = new Site();
+			
+			long site_id = results.getLong("site_id");
+			long campground_id = results.getLong("campground_id");
+			long site_number = results.getLong("site_number");
+			long max_occupancy = results.getLong("max_occupancy");
+			boolean accessible = results.getBoolean("accessible");
+			long max_rv_length = results.getLong("max_rv_length");
+			boolean utilities = results.getBoolean("utilities");
 
+			availableSite.setSite_id(site_id);
+			availableSite.setCampground_id(campground_id);
+			availableSite.setSite_number(site_number);
+			availableSite.setMax_occupancy(max_occupancy);
+			availableSite.setAccessible(accessible);
+			availableSite.setMax_rv_length(max_rv_length);
+			availableSite.setUtilities(utilities);
+			
+			System.out.println("its null, .... sucker");
+			
+			availableSiteList.add(availableSite);
+		}
+		*/
 		
+		for(Reservation r : resList) {
+			LocalDate fd = r.getFrom_date();
+			LocalDate td = r.getTo_date();
+			LocalDate beginDateLD = LocalDate.parse(beginDate);
+			LocalDate endDateLD = LocalDate.parse(endDate);
+			
+			if (fd.isAfter(beginDateLD) || fd.isBefore(endDateLD)){
+				isSiteAvailable = false;
+				System.out.println("1its false, .... sucker");
+
+			}
+			else if (td.isAfter(beginDateLD) || td.isBefore(endDateLD)){
+				isSiteAvailable = false;
+				System.out.println("2its false, .... sucker");
+
+			}
+			else if (fd.isBefore(beginDateLD) && td.isBefore(endDateLD)) {
+				isSiteAvailable = false;
+				System.out.println("3its false, .... sucker");
+
+			}
+			else {
+				isSiteAvailable = true;
+				
+				Site availableSite = new Site();
+						
+				long site_id = results.getLong("site_id");
+				long campground_id = results.getLong("campground_id");
+				long site_number = results.getLong("site_number");
+				long max_occupancy = results.getLong("max_occupancy");
+				boolean accessible = results.getBoolean("accessible");
+				long max_rv_length = results.getLong("max_rv_length");
+				boolean utilities = results.getBoolean("utilities");
+
+				availableSite.setSite_id(site_id);
+				availableSite.setCampground_id(campground_id);
+				availableSite.setSite_number(site_number);
+				availableSite.setMax_occupancy(max_occupancy);
+				availableSite.setAccessible(accessible);
+				availableSite.setMax_rv_length(max_rv_length);
+				availableSite.setUtilities(utilities);
+				
+				System.out.println("its null, .... sucker");
+				
+				availableSiteList.add(availableSite);
+			}
+		}
 	
+		return availableSiteList;
+
 	}
 	
-	
-		
-		
 }
+
+
+
+
 
