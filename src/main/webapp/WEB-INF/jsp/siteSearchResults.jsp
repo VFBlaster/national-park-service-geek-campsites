@@ -14,9 +14,9 @@
 			<img id="logo" src="${logoSrc}" alt="Campsite Logo" />
 		</header>
 	
-		<h1 id="welcome">Available sites in your Campground</h1>
+		<h1 id="welcome">Available sites in your Campground from ${begin} to ${end}</h1>
 		
-		<c:forEach var="site" items="${availableSiteList}">
+		<c:forEach var="site" items="${sites}">
 			<li class="park">
 				<b>Site ID: <c:out value="${site.site_id}"/></b><br><br>
 				Maximum occupancy <c:out value="${site.max_occupancy}"/> guests <br>

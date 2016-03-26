@@ -21,10 +21,10 @@
 			
 				<form method="GET" action="siteSearchResults">
 					<input type="hidden" name="campgroundId" value="${parkCampGround.campgroundId}" />
-					<input type="date" min="2016-03-01" name="begindate" required="true"/>
+					<input type="date" min="2016-03-01" name="begindate" required="true" />
 					
  				<p>Please Select an End Date</p>
-					<input type="date" min="2016-03-02" name="enddate" required="true"/>
+					<input type="date" min="2016-03-02" name="enddate" required="true" />
 					<br>
 					<br>
 					<input type="submit" value="Search for availability" />

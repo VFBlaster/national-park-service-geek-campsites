@@ -69,23 +69,18 @@ public class ParkController {
 	}
 	
 	
-	
-	
-	
-	
 	@RequestMapping(path = "/siteSearchResults", method=RequestMethod.GET)
 	public String getSearchResults(Map<String, Object> modelSiteSearchResults,
 													   	@RequestParam(name="campgroundId") long campgroundId, 
 														@RequestParam(name="begindate") String beginDate,
 														@RequestParam(name="enddate") String endDate){
 		
-
 		List<Site> sites = siteSearchDAO.showAvailableSites(campgroundId, beginDate, endDate);
-		
-		System.out.println("ParkController says: "+beginDate);
-		System.out.println("ParkController says: "+endDate);
-
+	
 		modelSiteSearchResults.put("sites", sites);
+		modelSiteSearchResults.put("begin", beginDate);
+		modelSiteSearchResults.put("end", endDate);
+
 
 		return "siteSearchResults";												
 		
