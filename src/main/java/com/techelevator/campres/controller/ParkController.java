@@ -1,7 +1,6 @@
 package com.techelevator.campres.controller;
 
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +79,7 @@ public class ParkController {
 		modelSiteSearchResults.put("sites", sites);
 		modelSiteSearchResults.put("begin", beginDate);
 		modelSiteSearchResults.put("end", endDate);
+		modelSiteSearchResults.put("campgroundId", campgroundId);
 
 
 		return "siteSearchResults";												

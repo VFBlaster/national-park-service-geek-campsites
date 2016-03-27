@@ -25,6 +25,7 @@ public class JDBCSiteSearchDAO implements SiteSearchDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		}
 	
+		
 	@Override
 	public List<Site> showAvailableSites(long campgroundId, String beginDate, String endDate) {
 		
@@ -61,7 +62,7 @@ public class JDBCSiteSearchDAO implements SiteSearchDAO {
 					availableSite.setMax_rv_length(max_rv_length);
 					availableSite.setUtilities(utilities);
 					
-					System.out.println("added Sites to List, .... sucker");
+					System.out.println("added Sites to List");
 					
 					availableSiteList.add(availableSite);
 				
@@ -98,17 +99,17 @@ public class JDBCSiteSearchDAO implements SiteSearchDAO {
 			
 			if (fd.isAfter(beginDateLD) && fd.isBefore(endDateLD)){
 				isSiteAvailable = false;
-				System.out.println("1its false, .... sucker");
+				System.out.println("1 - it's false");
 
 			}
 			else if (td.isAfter(beginDateLD) && td.isBefore(endDateLD)){
 				isSiteAvailable = false;
-				System.out.println("2its false, .... sucker");
+				System.out.println("2 - it's false");
 
 			}
 			else if (fd.isBefore(beginDateLD) && td.isAfter(endDateLD)) {
 				isSiteAvailable = false;
-				System.out.println("3its false, .... sucker");
+				System.out.println("3 - it's false");
 
 			}
 			else {
@@ -132,14 +133,14 @@ public class JDBCSiteSearchDAO implements SiteSearchDAO {
 				availableSite.setMax_rv_length(max_rv_length);
 				availableSite.setUtilities(utilities);
 				
-				System.out.println("4its true, .... sucker");
+				System.out.println("4 - it's true");
 				
 				availableSiteList.add(availableSite);
 			}
 			}
 		}
 		}
-	
+//		availableSiteList = null;					// allows for testing no sites found for dates specified
 		return availableSiteList;
 
 	}

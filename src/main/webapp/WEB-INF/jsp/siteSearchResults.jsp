@@ -6,6 +6,7 @@
 		<title>Sites</title>
 		<c:url var="cssHref" value="/css/site.css" />
 		<link type="text/css" rel="stylesheet" href="${cssHref}" />
+
 	</head>
 
 	<body>
@@ -15,6 +16,16 @@
 		</header>
 	
 		<h1 id="welcome">Available sites in your Campground from ${begin} to ${end}</h1>
+		
+		<c:if test="${sites == null}" >
+			<p>No sites available in your selected Campground!
+			Please return to 
+				<c:url var="sitesearchHref" value="/campsite_search">
+					<c:param name="campgroundId" value="${campgroundId}" />
+				</c:url>
+				<a href="${sitesearchHref}"> Date search form </a>
+		</c:if>
+		
 		
 		<c:forEach var="site" items="${sites}">
 			<li class="park">
