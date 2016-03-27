@@ -21,7 +21,7 @@
 			<p>No sites available in your selected Campground!
 			Please return to 
 				<c:url var="sitesearchHref" value="/campsite_search">
-					<c:param name="campgroundId" value="${campgroundId}" />
+					<c:param name="campgroundIdFinal" value="${campgroundId}" />
 				</c:url>
 				<a href="${sitesearchHref}"> Date search form </a>
 		</c:if>
@@ -35,8 +35,15 @@
 				Utility hookup: <c:out value="${site.utilities}"/><br>
 				Maximum RV length: <c:out value="${site.max_rv_length}"/><br>
 				
-				<form method="GET" action="reserve">
-					<input type="hidden" name="siteId" value="${site.site_id}" /><br>
+				<form method="POST" action="reserve">
+					<input type="hidden" name="siteIdReserve" value="${site.site_id}" />
+					<input type="hidden" name="beginD" value="${begin}" />
+					<input type="hidden" name="endD" value="${end}" /><br>
+					<input type="hidden" name="utilities" value="${site.utilities}" /><br>
+					<input type="hidden" name="RV" value="${site.max_rv_length}" /><br>
+					<input type="hidden" name="accessible" value="${site.accessible}" /><br>
+					<input type="hidden" name="occupancy" value="${site.max_occupancy}" /><br>
+					
 					<input type="submit" value="RESERVE"/>
 				</form>
 				

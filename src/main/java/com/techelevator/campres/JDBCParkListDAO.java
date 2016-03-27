@@ -54,9 +54,7 @@ public class JDBCParkListDAO implements ParkListDAO {
 			aPark.setDescription(description);
 			
 			parkList.add(aPark);
-			
 		}
-		
 		return parkList;
 	}
 

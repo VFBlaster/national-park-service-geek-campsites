@@ -20,7 +20,8 @@
 				<p>Please Select a Start Date</p>
 			
 				<form method="GET" action="siteSearchResults">
-					<input type="hidden" name="campgroundId" value="${parkCampGround.campgroundId}" />
+					<input type="hidden" name="campgroundIdFinal" value="${parkCampGround.campgroundId}" />
+					<input type="hidden" name="campgroundNameFinal" value="${parkCampGround.name}" />
 					<input type="date" min="2016-03-01" name="begindate" required="true" />
 					
  				<p>Please Select an End Date</p>
